@@ -131,6 +131,12 @@ class EDLoader: UIView {
     
     
     // MARK: - Initialization
+    
+    public class func loader(target: AnyObject, action: Selector) -> EDLoader {
+        let obj = EDLoader.init(target: target, action: action)
+        return obj
+    }
+   
     init(target: AnyObject, action: Selector) {
         self.init()
         self.target = target

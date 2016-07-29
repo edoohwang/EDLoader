@@ -11,7 +11,7 @@ import UIKit
 
 extension UIScrollView {
     
-    var ed_topLoader: EDLoader {
+     var ed_topLoader: EDLoader {
         get {
             return objc_getAssociatedObject(self, &memberHeaderRefreshKey) as! EDLoader
         }
