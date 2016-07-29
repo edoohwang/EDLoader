@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692A76F11D4B45B2009A61D2 /* EDTopLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A76F01D4B45B2009A61D2 /* EDTopLoader.swift */; };
+		692A76F31D4B5662009A61D2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A76F21D4B5662009A61D2 /* Loader.swift */; };
+		692A76F51D4B58FE009A61D2 /* EDCustomTopLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A76F41D4B58FE009A61D2 /* EDCustomTopLoader.swift */; };
 		69C0E9D11D4A1C3600E61C59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C0E9D01D4A1C3600E61C59 /* AppDelegate.swift */; };
 		69C0E9D61D4A1C3600E61C59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69C0E9D41D4A1C3600E61C59 /* Main.storyboard */; };
 		69C0E9D81D4A1C3600E61C59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69C0E9D71D4A1C3600E61C59 /* Assets.xcassets */; };
@@ -40,7 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		69BC9D551D4B07A500BD5FDE /* EDLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDLoader.h; sourceTree = "<group>"; };
+		692A76F01D4B45B2009A61D2 /* EDTopLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDTopLoader.swift; sourceTree = "<group>"; };
+		692A76F21D4B5662009A61D2 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		692A76F41D4B58FE009A61D2 /* EDCustomTopLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDCustomTopLoader.swift; sourceTree = "<group>"; };
 		69C0E9CD1D4A1C3500E61C59 /* EDLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C0E9D01D4A1C3600E61C59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69C0E9D51D4A1C3600E61C59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +122,7 @@
 				69C0E9D71D4A1C3600E61C59 /* Assets.xcassets */,
 				69C0E9D91D4A1C3600E61C59 /* LaunchScreen.storyboard */,
 				69C0E9DC1D4A1C3600E61C59 /* Info.plist */,
+				692A76F21D4B5662009A61D2 /* Loader.swift */,
 			);
 			path = EDLoader;
 			sourceTree = "<group>";
@@ -142,9 +148,10 @@
 		69CF382E1D4A648A00620C7C /* EDLoader */ = {
 			isa = PBXGroup;
 			children = (
-				69BC9D551D4B07A500BD5FDE /* EDLoader.h */,
 				69CF382F1D4A648A00620C7C /* EDLoader.bundle */,
 				69CF38301D4A648A00620C7C /* EDLoader.swift */,
+				692A76F01D4B45B2009A61D2 /* EDTopLoader.swift */,
+				692A76F41D4B58FE009A61D2 /* EDCustomTopLoader.swift */,
 				69CF38311D4A648A00620C7C /* EDLoaderCommon.swift */,
 				69CF38321D4A648A00620C7C /* NSBundle+EDLoader.swift */,
 				69CF38331D4A648A00620C7C /* UIScrollView+EDLoader.swift */,
@@ -292,9 +299,12 @@
 				69C0EA0A1D4A1E3200E61C59 /* ViewController.swift in Sources */,
 				69C0E9D11D4A1C3600E61C59 /* AppDelegate.swift in Sources */,
 				69CF38361D4A648A00620C7C /* EDLoader.swift in Sources */,
+				692A76F51D4B58FE009A61D2 /* EDCustomTopLoader.swift in Sources */,
 				69CF383A1D4A648A00620C7C /* UIView+EDLoader.swift in Sources */,
 				69CF38381D4A648A00620C7C /* NSBundle+EDLoader.swift in Sources */,
 				69CF38391D4A648A00620C7C /* UIScrollView+EDLoader.swift in Sources */,
+				692A76F11D4B45B2009A61D2 /* EDTopLoader.swift in Sources */,
+				692A76F31D4B5662009A61D2 /* Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

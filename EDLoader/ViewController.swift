@@ -15,7 +15,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.ed_topLoader = EDLoader(target: self, action: #selector(loadMoreData))
+        tableView.ed_topLoader = Loader(target: self, action: #selector(loadMoreData))
         tableView.ed_topLoader.beginLoading()
     }
 
@@ -32,7 +32,7 @@ class ViewController: UITableViewController {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.tableView.ed_topLoader.endRefresh()
+            self.tableView.ed_topLoader.endLoading()
         }
     }
     

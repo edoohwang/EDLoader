@@ -4,7 +4,7 @@ import UIKit
 
 
 public class EDLoader: UIView {
-    enum EDLoaderState {
+    public enum EDLoaderState {
         /// 正在加载
         case loading
         /// 即将加载
@@ -17,31 +17,14 @@ public class EDLoader: UIView {
     
     // MARK: - Member
     /// 回调方法的对象
-    private var target: AnyObject?
+    var target: AnyObject?
     /// 回调方法
-    private var action: Selector?
+    var action: Selector?
     /// 没有获得父类初始化inset的时候要就刷新，true的时候会等待inset设置好了以后才才会执行beginRefresh
-    private var forceLoadingFlag = false
-    /// fresh高度
-    private let loaderHeight: CGFloat = 50
-    /// 箭头图标
-    private lazy var arrowView: UIImageView = {
-        
-        
-        let av = UIImageView(image: NSBundle.ed_arrowImage())
-        self.addSubview(av)
-        return av
-    }()
-    /// 等待图标
-    private lazy var waitingView: UIActivityIndicatorView = {
-        
-        let wv = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        wv.hidden = true
-        self.addSubview(wv)
-        return wv
-    }()
+    var forceLoadingFlag = false
+
     /// 父控件
-    private var superScrollView: UIScrollView? {
+    var superScrollView: UIScrollView? {
         didSet {
             
             // 垂直方向永远有弹性
@@ -62,13 +45,13 @@ public class EDLoader: UIView {
         }
     }
     
-    private var superViewOriginalInset: UIEdgeInsets?
+    var superViewOriginalInset: UIEdgeInsets?
     
     /// 父控件滚动条最初的偏移量
-    private var initialSuperViewContentOffsetY: CGFloat?
+    var initialSuperViewContentOffsetY: CGFloat?
     
     /// loader显示出来的百分比
-    private var viewDidShowPercentage: CGFloat = 0 {
+    var viewDidShowPercentage: CGFloat = 0 {
         didSet {
             if loading() == true {
                 return
@@ -78,68 +61,11 @@ public class EDLoader: UIView {
     }
     
     /// loader的状态
-    private var state: EDLoaderState = EDLoaderState.free {
-        didSet { // 根据状态来做事
-            
-            if oldValue == state  {
-                return
-            }
-            if state == .willLoad {
-                UIView.animateWithDuration(ed_animationDurution, animations: {
-                    self.arrowView.transform = CGAffineTransformRotate(self.arrowView.transform, CGFloat(M_PI)-0.000000000001)
-                })
-            } else if state == .free {
-                UIView.animateWithDuration(ed_animationDurution, animations: {
-                    self.arrowView.transform = CGAffineTransformIdentity
-                })
-                
-            }  else if state == .loading {
-                
-                
-                if initialSuperViewContentOffsetY == nil {
-                    return
-                }
-                
-                setNeedsDisplay()
-                
-                let offsetY = initialSuperViewContentOffsetY! - loaderHeight
-                
-                setSuperScrollViewOffsetY(offsetY)
-                
-                arrowView.hidden = true
-                waitingView.hidden = false
-                waitingView.startAnimating()
-                
-                target!.performSelector(action!)
-                
-                
-           
-                return
-            } else if state == .reset {
-                
-                arrowView.hidden = false
-                waitingView.hidden = true
-                waitingView.stopAnimating()
-                setSuperScrollViewOffsetY(initialSuperViewContentOffsetY!)
-                UIView.animateWithDuration(ed_animationDurution, animations: {
-                    self.viewDidShowPercentage = 0
-                    self.state = .free
-                })
-            }
-        }
-    }
+    var state: EDLoaderState = EDLoaderState.free 
     
     
     // MARK: - Initialization
-    
-   
-    public init(target: AnyObject, action: Selector) {
-        self.init()
-        self.target = target
-        self.action = action
-    }
     override init(frame: CGRect) {
-        
         super.init(frame:  CGRect(x: 0, y: -loaderHeight, width: ed_screenW, height: loaderHeight))
         setupSurface()
     }
@@ -195,21 +121,13 @@ public class EDLoader: UIView {
     /**
      begin animation and invoke function
      */
-    public func beginLoading() -> Void {
-        if initialSuperViewContentOffsetY == nil {
-            forceLoadingFlag = true
-        }
-        
-        
-        self.viewDidShowPercentage = 1
-        self.state = .loading
-    }
+    func beginLoading() -> Void {}
+    
     /**
      end annimation
      */
-    public func endRefresh() -> Void {
-        state = .reset
-    }
+    func endLoading() -> Void {}
+    
     public func loading() -> Bool {
         return state == .loading || state == .willLoad
     }
@@ -219,7 +137,6 @@ public class EDLoader: UIView {
      */
     func setToScrollView(view: UIScrollView) -> Void {
         // 父控件必须是UIScrollView的子类
-        setupSurface()
         
         view.addSubview(self)
         // 保存父控件
@@ -229,20 +146,17 @@ public class EDLoader: UIView {
         setupObserver()
     }
     
-    private func setupSurface() {
-        arrowView.ed_center_x = self.ed_width/2
-        arrowView.ed_center_y = self.ed_height/2
-        
-        waitingView.ed_center_x = self.ed_width/2
-        waitingView.ed_center_y = self.ed_height/2
-    }
+    /**
+     初始化界面
+     */
+    func setupSurface() {}
     
-    private func setupObserver() {
+    func setupObserver() {
         superScrollView!.addObserver(self, forKeyPath: EDContentOffsetKey, options: [NSKeyValueObservingOptions.New, .Old], context: nil)
         
     }
     
-    private func setSuperScrollViewOffsetY(offsetY: CGFloat) {
+    func setSuperScrollViewOffsetY(offsetY: CGFloat) {
         
         UIView.animateWithDuration(ed_animationDurution) {
             self.superScrollView!.ed_insetTop = -offsetY

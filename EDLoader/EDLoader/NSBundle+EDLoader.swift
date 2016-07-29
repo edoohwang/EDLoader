@@ -20,4 +20,9 @@ extension NSBundle {
         let img = UIImage(contentsOfFile: ed_loderBundle().pathForResource("arrow@2x", ofType: "png")!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         return img!
     }
+    
+    class func ed_waitingImage() -> (UIImage) {
+        let img = UIImage(contentsOfFile: ed_loderBundle().pathForResource("waiting@2x", ofType: "png")!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        return img!
+    }
 }

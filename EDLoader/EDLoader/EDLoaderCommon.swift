@@ -15,6 +15,9 @@ var memberHeaderRefreshKey: UInt8 = 0//"memberHeaderRefresh"
 /// 触发刷新的拖动偏移量
 let ed_loadingOffset: CGFloat = 100
 
+/// Loader高度
+let loaderHeight: CGFloat = 50
+
 let ed_screenW: CGFloat = UIScreen.mainScreen().bounds.width
 
 let ed_screenH: CGFloat = UIScreen.mainScreen().bounds.height
