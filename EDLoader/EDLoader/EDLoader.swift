@@ -144,7 +144,7 @@ public class EDLoader: UIView {
         setupSurface()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -192,6 +192,9 @@ public class EDLoader: UIView {
         
     }
     // MARK: - Function
+    /**
+     begin animation and invoke function
+     */
     public func beginLoading() -> Void {
         if initialSuperViewContentOffsetY == nil {
             forceLoadingFlag = true
@@ -201,6 +204,9 @@ public class EDLoader: UIView {
         self.viewDidShowPercentage = 1
         self.state = .loading
     }
+    /**
+     end annimation
+     */
     public func endRefresh() -> Void {
         state = .reset
     }

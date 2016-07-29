@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension UIScrollView {
+extension UIScrollView {
     
      public var ed_topLoader: EDLoader {
         get {
