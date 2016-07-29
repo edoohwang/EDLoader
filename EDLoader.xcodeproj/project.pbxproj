@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69BC9D551D4B07A500BD5FDE /* EDLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDLoader.h; sourceTree = "<group>"; };
 		69C0E9CD1D4A1C3500E61C59 /* EDLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EDLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C0E9D01D4A1C3600E61C59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69C0E9D51D4A1C3600E61C59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		69CF382E1D4A648A00620C7C /* EDLoader */ = {
 			isa = PBXGroup;
 			children = (
+				69BC9D551D4B07A500BD5FDE /* EDLoader.h */,
 				69CF382F1D4A648A00620C7C /* EDLoader.bundle */,
 				69CF38301D4A648A00620C7C /* EDLoader.swift */,
 				69CF38311D4A648A00620C7C /* EDLoaderCommon.swift */,
