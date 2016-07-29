@@ -79,7 +79,7 @@ public class EDCustomTopLoader: EDLoader {
         self.action = action
     }
     
-    override func setupSurface() {
+    public override func setupSurface() {
         super.setupSurface()
         
         // initial arrowView
