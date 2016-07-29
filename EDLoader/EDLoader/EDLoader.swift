@@ -74,6 +74,13 @@ public class EDLoader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+     init(target: AnyObject, action: Selector) {
+        self.init()
+        self.target = target
+        self.action = action
+    }
+    
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

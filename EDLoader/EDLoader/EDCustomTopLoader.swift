@@ -73,11 +73,7 @@ public class EDCustomTopLoader: EDLoader {
     // MARK: - Initialization
     
     
-    public convenience init(target: AnyObject, action: Selector) {
-        self.init()
-        self.target = target
-        self.action = action
-    }
+
     
     public override func setupSurface() {
         super.setupSurface()
