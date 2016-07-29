@@ -24,7 +24,7 @@ public class EDCustomTopLoader: EDLoader {
     var imgForLoading: UIImage?
     
     /// loader的状态
-    override var state: EDLoaderState {
+    override public var state: EDLoaderState {
         didSet { // 根据状态来做事
             
             if oldValue == state  {

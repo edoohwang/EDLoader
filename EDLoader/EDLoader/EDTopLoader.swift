@@ -27,7 +27,7 @@ public class EDTopLoader: EDLoader {
     }()
     
     /// loader的状态
-    override var state: EDLoaderState {
+    override public var state: EDLoaderState {
         didSet { // 根据状态来做事
             
             if oldValue == state  {
@@ -82,7 +82,7 @@ public class EDTopLoader: EDLoader {
     
  
 
-    override func setupSurface() {
+    override public func setupSurface() {
         super.setupSurface()
  
         arrowView.ed_center_x = self.ed_width/2

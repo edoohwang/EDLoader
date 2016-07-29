@@ -17,14 +17,14 @@ public class EDLoader: UIView {
     
     // MARK: - Member
     /// 回调方法的对象
-    var target: AnyObject?
+    public var target: AnyObject?
     /// 回调方法
-    var action: Selector?
+    public var action: Selector?
     /// 没有获得父类初始化inset的时候要就刷新，true的时候会等待inset设置好了以后才才会执行beginRefresh
-    var forceLoadingFlag = false
+    public var forceLoadingFlag = false
 
     /// 父控件
-    var superScrollView: UIScrollView? {
+    private var superScrollView: UIScrollView? {
         didSet {
             
             // 垂直方向永远有弹性
@@ -45,13 +45,13 @@ public class EDLoader: UIView {
         }
     }
     
-    var superViewOriginalInset: UIEdgeInsets?
+    private var superViewOriginalInset: UIEdgeInsets?
     
     /// 父控件滚动条最初的偏移量
-    var initialSuperViewContentOffsetY: CGFloat?
+    public var initialSuperViewContentOffsetY: CGFloat?
     
     /// loader显示出来的百分比
-    var viewDidShowPercentage: CGFloat = 0 {
+    public var viewDidShowPercentage: CGFloat = 0 {
         didSet {
             if loading() == true {
                 return
@@ -61,11 +61,11 @@ public class EDLoader: UIView {
     }
     
     /// loader的状态
-    var state: EDLoaderState = EDLoaderState.free 
+    public var state: EDLoaderState = EDLoaderState.free
     
     
     // MARK: - Initialization
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame:  CGRect(x: 0, y: -loaderHeight, width: ed_screenW, height: loaderHeight))
         setupSurface()
     }
@@ -74,7 +74,7 @@ public class EDLoader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-     init(target: AnyObject, action: Selector) {
+    public init(target: AnyObject, action: Selector) {
         self.init()
         self.target = target
         self.action = action
@@ -89,7 +89,7 @@ public class EDLoader: UIView {
      通过监听偏移来确定loader的状态，从而知道做什么
      
      */
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         // 如果不在主窗口显示就直接返回
         if window == nil {
@@ -128,12 +128,12 @@ public class EDLoader: UIView {
     /**
      begin animation and invoke function
      */
-    func beginLoading() -> Void {}
+    public func beginLoading() -> Void {}
     
     /**
      end annimation
      */
-    func endLoading() -> Void {}
+    public func endLoading() -> Void {}
     
     public func loading() -> Bool {
         return state == .loading || state == .willLoad
@@ -156,7 +156,7 @@ public class EDLoader: UIView {
     /**
      初始化界面
      */
-    func setupSurface() {}
+    public func setupSurface() {}
     
     func setupObserver() {
         superScrollView!.addObserver(self, forKeyPath: EDContentOffsetKey, options: [NSKeyValueObservingOptions.New, .Old], context: nil)
