@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.platform     =  :ios, '9.0'
   s.source       =  { :git => 'https://github.com/edoohwang/EDLoader.git', :tag => s.version }
   s.source_files = 'EDLoader/EDLoader/**/*.{swift}'
-  s.resource     = 'EDLoader/EDLoader/**/*.{png,jpeg,jpg,storyboard,xib}'
+  s.resource     = 'EDLoader/EDLoader/**/*.bundle'
   s.requires_arc = true
   
 # Pod Dependencies
