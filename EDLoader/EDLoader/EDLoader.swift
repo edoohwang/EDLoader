@@ -3,7 +3,7 @@
 import UIKit
 
 
-class EDLoader: UIView {
+public class EDLoader: UIView {
     enum EDLoaderState {
         /// 正在加载
         case loading
@@ -132,12 +132,8 @@ class EDLoader: UIView {
     
     // MARK: - Initialization
     
-    public class func loader(target: AnyObject, action: Selector) -> EDLoader {
-        let obj = EDLoader.init(target: target, action: action)
-        return obj
-    }
    
-    init(target: AnyObject, action: Selector) {
+    public init(target: AnyObject, action: Selector) {
         self.init()
         self.target = target
         self.action = action
@@ -148,7 +144,7 @@ class EDLoader: UIView {
         setupSurface()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -160,7 +156,7 @@ class EDLoader: UIView {
      通过监听偏移来确定loader的状态，从而知道做什么
      
      */
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         // 如果不在主窗口显示就直接返回
         if window == nil {
@@ -196,7 +192,7 @@ class EDLoader: UIView {
         
     }
     // MARK: - Function
-    func beginLoading() -> Void {
+    public func beginLoading() -> Void {
         if initialSuperViewContentOffsetY == nil {
             forceLoadingFlag = true
         }
@@ -205,10 +201,10 @@ class EDLoader: UIView {
         self.viewDidShowPercentage = 1
         self.state = .loading
     }
-    func endRefresh() -> Void {
+    public func endRefresh() -> Void {
         state = .reset
     }
-    func loading() -> Bool {
+    public func loading() -> Bool {
         return state == .loading || state == .willLoad
     }
     /**

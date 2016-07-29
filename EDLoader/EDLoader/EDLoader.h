@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EDLoader.swift"
-#import "EDLoaderCommon.swift"
-#import "NSBundle+EDLoader.swift"
-#import "UIScrollView+EDLoader.swift"
-#import "UIView+EDLoader.swift"
+
 
 //! Project version number for EDLoader.
 FOUNDATION_EXPORT double EDLoaderVersionNumber;

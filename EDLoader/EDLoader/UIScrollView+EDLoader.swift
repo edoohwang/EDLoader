@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension UIScrollView {
+public extension UIScrollView {
     
-     var ed_topLoader: EDLoader {
+     public var ed_topLoader: EDLoader {
         get {
             return objc_getAssociatedObject(self, &memberHeaderRefreshKey) as! EDLoader
         }
