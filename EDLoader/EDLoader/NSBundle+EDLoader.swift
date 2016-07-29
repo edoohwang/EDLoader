@@ -17,7 +17,7 @@ extension NSBundle {
     }
     
     class func ed_arrowImage() -> (UIImage) {
-        let img = UIImage(contentsOfFile: ed_loderBundle().pathForResource("arrow@2x", ofType: "png")!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        let img = UIImage(contentsOfFile: ed_loderBundle().pathForResource("arrow@2x", ofType: "png")!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         return img!
     }
 }
