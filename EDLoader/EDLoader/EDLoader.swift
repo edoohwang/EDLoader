@@ -24,44 +24,17 @@ public class EDLoader: UIView {
     public var forceLoadingFlag = false
 
     /// 父控件
-    private var superScrollView: UIScrollView? {
-        didSet {
-            
-            // 垂直方向永远有弹性
-            superScrollView!.alwaysBounceVertical = true
-            
-            
-            // 需要开启新线程才能获取正确的contenInset，原因不明
-            dispatch_async(dispatch_get_main_queue()) {
-                self.initialSuperViewContentOffsetY = (self.superScrollView?.ed_contentOffsetY())!
-                self.superViewOriginalInset = self.superScrollView?.contentInset
-                self.state = .free
-                // 得到初始化inset的时候，如果需要的话，立刻开始刷新
-                if self.forceLoadingFlag == true {
-                    self.beginLoading()
-                }
-            }
-            
-        }
-    }
+    weak var superScrollView: UIScrollView? 
     
-    private var superViewOriginalInset: UIEdgeInsets?
+    var superViewOriginalInset: UIEdgeInsets?
     
     /// 父控件滚动条最初的偏移量
-    public var initialSuperViewContentOffsetY: CGFloat?
+    var initialSuperViewContentOffsetY: CGFloat?
     
     /// loader显示出来的百分比
-    public var viewDidShowPercentage: CGFloat = 0 {
-        didSet {
-            if loading() == true {
-                return
-            }
-            alpha = viewDidShowPercentage <= 1 ? viewDidShowPercentage : 1
-        }
-    }
-    
+    var viewDidShowPercentage: CGFloat = 0 
     /// loader的状态
-    public var state: EDLoaderState = EDLoaderState.free
+    var state: EDLoaderState?
     
     
     // MARK: - Initialization
@@ -85,45 +58,7 @@ public class EDLoader: UIView {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    /**
-     通过监听偏移来确定loader的状态，从而知道做什么
-     
-     */
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        
-        // 如果不在主窗口显示就直接返回
-        if window == nil {
-            return
-        }
-        
-        let contenOffsetY = (superview as! UIScrollView).ed_contentOffsetY()
-        
-        // 如果已经向上滚动的话，直接返回
-        if contenOffsetY > initialSuperViewContentOffsetY {
-            return
-        }
-        
-        
-        viewDidShowPercentage = fabs((contenOffsetY-initialSuperViewContentOffsetY!) / loaderHeight)
-        
-        // 判断当前loader的状态
-        if superScrollView?.dragging == true
-        {
-            if contenOffsetY < initialSuperViewContentOffsetY!-ed_loadingOffset
-            {
-                state = .willLoad
-            }
-            else
-            {
-                state = .free
-            }
-        }
-        else if state == .willLoad
-        {
-            state = .loading
-        }
-        
-    }
+
     // MARK: - Function
     /**
      begin animation and invoke function
@@ -148,9 +83,6 @@ public class EDLoader: UIView {
         view.addSubview(self)
         // 保存父控件
         superScrollView = view
-        
-        // 监听
-        setupObserver()
     }
     
     /**
@@ -158,11 +90,7 @@ public class EDLoader: UIView {
      */
     public func setupSurface() {}
     
-    func setupObserver() {
-        superScrollView!.addObserver(self, forKeyPath: EDContentOffsetKey, options: [NSKeyValueObservingOptions.New, .Old], context: nil)
-        
-    }
-    
+ 
     func setSuperScrollViewOffsetY(offsetY: CGFloat) {
         
         UIView.animateWithDuration(ed_animationDurution) {

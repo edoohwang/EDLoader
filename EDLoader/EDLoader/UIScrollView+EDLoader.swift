@@ -11,13 +11,14 @@ import UIKit
 
 extension UIScrollView {
     
-     public var ed_topLoader: EDLoader {
+     public var ed_topLoader: EDTopLoader {
         get {
-            return objc_getAssociatedObject(self, &memberHeaderRefreshKey) as! EDLoader
+            return objc_getAssociatedObject(self, &memberHeadLoaderKey) as! EDTopLoader
         }
         set {
-            newValue.setToScrollView(self)
-            objc_setAssociatedObject(self, &memberHeaderRefreshKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let value = newValue as EDTopLoader
+            value.setToScrollView(self)
+            objc_setAssociatedObject(self, &memberHeadLoaderKey, value, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     

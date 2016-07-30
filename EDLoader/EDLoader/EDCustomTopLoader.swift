@@ -8,23 +8,23 @@
 
 import UIKit
 
-public class EDCustomTopLoader: EDLoader {
+public class EDCustomTopLoader: EDTopLoader {
 
     // MARK: - Member
     /// arrow in loader
-    var arrowView: UIImageView?
+    private var arrowView: UIImageView?
     /// waiting in loader
-    var waitingView: UIImageView?
+    private var waitingView: UIImageView?
     
     /// the image is for free of loader state
-    var imgForFree: UIImage?
+    private var imgForFree: UIImage?
     /// the image is for will loading of loader state
-    var imgForWillLoading: UIImage?
+    private var imgForWillLoading: UIImage?
     /// the image is for loading of loader state
-    var imgForLoading: UIImage?
+    private var imgForLoading: UIImage?
     
     /// loader的状态
-    override public var state: EDLoaderState {
+    override  var state: EDLoaderState? {
         didSet { // 根据状态来做事
             
             if oldValue == state  {
@@ -84,32 +84,13 @@ public class EDCustomTopLoader: EDLoader {
         // initial waitingView
         waitingView = UIImageView(image: NSBundle.ed_waitingImage())
         addSubview(waitingView!)
-        
-        arrowView!.ed_center_x = self.ed_width/2
-        arrowView!.ed_center_y = self.ed_height/2
-        
-        waitingView!.ed_center_x = self.ed_width/2
-        waitingView!.ed_center_y = self.ed_height/2
+      
     }
     // MARK: - Function
     /**
      begin animation and invoke function
      */
-    public override func beginLoading() -> Void {
-        if initialSuperViewContentOffsetY == nil {
-            forceLoadingFlag = true
-        }
-        
-        
-        self.viewDidShowPercentage = 1
-        self.state = .loading
-    }
-    
-    
-    public override func endLoading() {
-        super.endLoading()
-        state = .reset
-    }
+
 
     public func setImage(img: UIImage, state: EDLoaderState) {
         if state == .free {
@@ -119,6 +100,9 @@ public class EDCustomTopLoader: EDLoader {
         } else if state == .willLoad {
             imgForWillLoading = img
         }
+        
+        arrowView?.sizeToFit()
+        waitingView?.sizeToFit()
     }
     
     private func startAnimation() -> () {
@@ -135,6 +119,18 @@ public class EDCustomTopLoader: EDLoader {
     
     private func stopAnimation() {
         waitingView?.layer.removeAllAnimations()
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
+        arrowView!.ed_center_x = self.ed_width/2
+        arrowView!.ed_center_y = self.ed_height/2
+        
+        waitingView!.ed_center_x = self.ed_width/2
+        waitingView!.ed_center_y = self.ed_height/2
+        
     }
     
 }

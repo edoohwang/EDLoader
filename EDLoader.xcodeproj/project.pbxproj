@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		691654BE1D4C92E600DB9F82 /* EDFootAotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691654BD1D4C92E600DB9F82 /* EDFootAotoLoader.swift */; };
+		691654C01D4C93E700DB9F82 /* EDFootLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691654BF1D4C93E700DB9F82 /* EDFootLoader.swift */; };
+		691654C21D4C9E0900DB9F82 /* EDNormalTopLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691654C11D4C9E0900DB9F82 /* EDNormalTopLoader.swift */; };
 		692A76F11D4B45B2009A61D2 /* EDTopLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A76F01D4B45B2009A61D2 /* EDTopLoader.swift */; };
 		692A76F31D4B5662009A61D2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A76F21D4B5662009A61D2 /* Loader.swift */; };
 		692A76F51D4B58FE009A61D2 /* EDCustomTopLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A76F41D4B58FE009A61D2 /* EDCustomTopLoader.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		691654BD1D4C92E600DB9F82 /* EDFootAotoLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDFootAotoLoader.swift; sourceTree = "<group>"; };
+		691654BF1D4C93E700DB9F82 /* EDFootLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDFootLoader.swift; sourceTree = "<group>"; };
+		691654C11D4C9E0900DB9F82 /* EDNormalTopLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDNormalTopLoader.swift; sourceTree = "<group>"; };
 		692A76F01D4B45B2009A61D2 /* EDTopLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDTopLoader.swift; sourceTree = "<group>"; };
 		692A76F21D4B5662009A61D2 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		692A76F41D4B58FE009A61D2 /* EDCustomTopLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDCustomTopLoader.swift; sourceTree = "<group>"; };
@@ -151,11 +157,14 @@
 				69CF382F1D4A648A00620C7C /* EDLoader.bundle */,
 				69CF38301D4A648A00620C7C /* EDLoader.swift */,
 				692A76F01D4B45B2009A61D2 /* EDTopLoader.swift */,
+				691654C11D4C9E0900DB9F82 /* EDNormalTopLoader.swift */,
 				692A76F41D4B58FE009A61D2 /* EDCustomTopLoader.swift */,
 				69CF38311D4A648A00620C7C /* EDLoaderCommon.swift */,
 				69CF38321D4A648A00620C7C /* NSBundle+EDLoader.swift */,
 				69CF38331D4A648A00620C7C /* UIScrollView+EDLoader.swift */,
 				69CF38341D4A648A00620C7C /* UIView+EDLoader.swift */,
+				691654BD1D4C92E600DB9F82 /* EDFootAotoLoader.swift */,
+				691654BF1D4C93E700DB9F82 /* EDFootLoader.swift */,
 			);
 			path = EDLoader;
 			sourceTree = "<group>";
@@ -296,13 +305,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				69CF38371D4A648A00620C7C /* EDLoaderCommon.swift in Sources */,
+				691654C01D4C93E700DB9F82 /* EDFootLoader.swift in Sources */,
 				69C0EA0A1D4A1E3200E61C59 /* ViewController.swift in Sources */,
 				69C0E9D11D4A1C3600E61C59 /* AppDelegate.swift in Sources */,
 				69CF38361D4A648A00620C7C /* EDLoader.swift in Sources */,
 				692A76F51D4B58FE009A61D2 /* EDCustomTopLoader.swift in Sources */,
 				69CF383A1D4A648A00620C7C /* UIView+EDLoader.swift in Sources */,
+				691654BE1D4C92E600DB9F82 /* EDFootAotoLoader.swift in Sources */,
 				69CF38381D4A648A00620C7C /* NSBundle+EDLoader.swift in Sources */,
 				69CF38391D4A648A00620C7C /* UIScrollView+EDLoader.swift in Sources */,
+				691654C21D4C9E0900DB9F82 /* EDNormalTopLoader.swift in Sources */,
 				692A76F11D4B45B2009A61D2 /* EDTopLoader.swift in Sources */,
 				692A76F31D4B5662009A61D2 /* Loader.swift in Sources */,
 			);
