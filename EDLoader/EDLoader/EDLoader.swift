@@ -17,14 +17,18 @@ public class EDLoader: UIView {
     
     // MARK: - Member
     /// 回调方法的对象
-    public var target: AnyObject?
+    var target: AnyObject?
     /// 回调方法
-    public var action: Selector?
+    var action: Selector?
     /// 没有获得父类初始化inset的时候要就刷新，true的时候会等待inset设置好了以后才才会执行beginRefresh
     public var forceLoadingFlag = false
 
     /// 父控件
-    weak var superScrollView: UIScrollView? 
+    weak var superScrollView: UIScrollView? {
+        didSet {
+            loaderWillAddToSrollView()
+        }
+    }
     
     var superViewOriginalInset: UIEdgeInsets?
     
@@ -39,18 +43,18 @@ public class EDLoader: UIView {
     
     // MARK: - Initialization
     public override init(frame: CGRect) {
-        super.init(frame:  CGRect(x: 0, y: -loaderHeight, width: ed_screenW, height: loaderHeight))
-        setupSurface()
+        super.init(frame: frame)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(target: AnyObject, action: Selector) {
+    public convenience init(target: AnyObject, action: Selector) {
         self.init()
         self.target = target
         self.action = action
+        setupSurface()
     }
     
     
@@ -59,20 +63,6 @@ public class EDLoader: UIView {
     }
     
 
-    // MARK: - Function
-    /**
-     begin animation and invoke function
-     */
-    public func beginLoading() -> Void {}
-    
-    /**
-     end annimation
-     */
-    public func endLoading() -> Void {}
-    
-    public func loading() -> Bool {
-        return state == .loading || state == .willLoad
-    }
     /**
      调用入口，添加到一个scrollView即可
      
@@ -85,18 +75,72 @@ public class EDLoader: UIView {
         superScrollView = view
     }
     
+    // MARK: - Function for children to invoke
     /**
-     初始化界面
+     begin animation and invoke function
+     */
+    public func beginLoading() -> Void {}
+    
+    /**
+     end annimation
+     */
+    public func endLoading() -> Void {}
+    
+    /**
+     judge wether loding
+    
+     */
+    public func loading() -> Bool {
+        return true
+    }
+
+    
+    /**
+     初始化界面,子类调用
      */
     public func setupSurface() {}
     
- 
-    func setSuperScrollViewOffsetY(offsetY: CGFloat) {
+    
+    /**
+     this function be invoked when menber superScrollView did set
+     */
+    func loaderWillAddToSrollView() {
+        setupObserver()
         
-        UIView.animateWithDuration(ed_animationDurution) {
-            self.superScrollView!.ed_insetTop = -offsetY
+        // must get real number in a new thread, I don't know what reason,under code is wrong
+        initialSuperViewContentOffsetY = (superScrollView?.ed_contentOffsetY())!
+        superViewOriginalInset = superScrollView?.contentInset
+        state = .free
+    }
+    
+    
+    /**
+     setup the observer
+     */
+    func setupObserver() {
+        superScrollView?.addObserver(self, forKeyPath: EDContentSizeKey, options: [.New, .Old], context: nil)
+        superScrollView?.addObserver(self, forKeyPath: EDContentOffsetKey, options: [.New, .Old], context: nil)
+    }
+    
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        if !self.hidden {
+            if keyPath == EDContentOffsetKey {
+                contentOffsetDidChange()
+            } else if keyPath == EDContentSizeKey {
+                contentSizeDidChange()
+            }
         }
     }
+    
+    
+    func contentSizeDidChange() {}
+    func contentOffsetDidChange() {}
+    
+
+    
+ 
+ 
     
     
     

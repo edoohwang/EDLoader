@@ -52,7 +52,7 @@ public class EDNormalTopLoader: EDTopLoader {
                 
                 let offsetY = initialSuperViewContentOffsetY! - loaderHeight
                 
-                setSuperScrollViewOffsetY(offsetY)
+                setSuperScrollViewOffsetY(-offsetY)
                 
                 arrowView.hidden = true
                 waitingView.hidden = false
@@ -66,7 +66,7 @@ public class EDNormalTopLoader: EDTopLoader {
                 arrowView.hidden = false
                 waitingView.hidden = true
                 waitingView.stopAnimating()
-                setSuperScrollViewOffsetY(initialSuperViewContentOffsetY!)
+                setSuperScrollViewOffsetY(-initialSuperViewContentOffsetY!)
                 UIView.animateWithDuration(ed_animationDurution, animations: {
                     self.viewDidShowPercentage = 0
                     self.state = .free

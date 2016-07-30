@@ -16,9 +16,18 @@ extension UIScrollView {
             return objc_getAssociatedObject(self, &memberHeadLoaderKey) as! EDTopLoader
         }
         set {
-            let value = newValue as EDTopLoader
-            value.setToScrollView(self)
-            objc_setAssociatedObject(self, &memberHeadLoaderKey, value, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            newValue.setToScrollView(self)
+            objc_setAssociatedObject(self, &memberHeadLoaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    public var ed_footLoader: EDFootLoader {
+        get {
+            return objc_getAssociatedObject(self, &memberFootLoaderKey) as! EDFootLoader
+        }
+        set {
+            newValue.setToScrollView(self)
+            objc_setAssociatedObject(self, &memberFootLoaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -37,6 +46,17 @@ extension UIScrollView {
             var inset = contentInset
             inset.top = newValue
             contentInset = inset
+        }
+    }
+    
+    var ed_ContenSizeH: CGFloat {
+        get {
+            return contentSize.height
+        }
+        set {
+            var size = contentSize
+            size.height = newValue
+            contentSize = size
         }
     }
     

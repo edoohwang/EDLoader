@@ -15,8 +15,11 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         tableView.ed_topLoader = Loader(target: self, action: #selector(loadMoreData))
         tableView.ed_topLoader.beginLoading()
+        tableView.ed_footLoader = EDFootLoader(target: self, action: #selector(loadMoreData))
     }
 
     override func didReceiveMemoryWarning() {

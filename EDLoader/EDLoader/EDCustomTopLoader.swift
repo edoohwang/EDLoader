@@ -46,7 +46,7 @@ public class EDCustomTopLoader: EDTopLoader {
                 
                 let offsetY = initialSuperViewContentOffsetY! - loaderHeight
                 
-                setSuperScrollViewOffsetY(offsetY)
+                setSuperScrollViewOffsetY(-offsetY)
                 
                 arrowView!.hidden = true
                 waitingView!.hidden = false
@@ -60,7 +60,7 @@ public class EDCustomTopLoader: EDTopLoader {
                 arrowView!.hidden = false
                 waitingView!.hidden = true
                 stopAnimation()
-                setSuperScrollViewOffsetY(initialSuperViewContentOffsetY!)
+                setSuperScrollViewOffsetY(-initialSuperViewContentOffsetY!)
                 UIView.animateWithDuration(ed_animationDurution, animations: {
                     self.viewDidShowPercentage = 0
                     self.state = .free
@@ -68,6 +68,7 @@ public class EDCustomTopLoader: EDTopLoader {
             }
         }
     }
+    
     
     
     // MARK: - Initialization
@@ -84,14 +85,19 @@ public class EDCustomTopLoader: EDTopLoader {
         // initial waitingView
         waitingView = UIImageView(image: NSBundle.ed_waitingImage())
         addSubview(waitingView!)
+        
+        layoutIfNeeded()
       
     }
     // MARK: - Function
+
+
     /**
-     begin animation and invoke function
+     set the Image for the different state
+     
+     - parameter img:   image to show
+     - parameter state: when the image will show
      */
-
-
     public func setImage(img: UIImage, state: EDLoaderState) {
         if state == .free {
             imgForFree = img

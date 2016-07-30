@@ -9,7 +9,9 @@
 
 import UIKit
 let EDContentOffsetKey = "contentOffset"
+let EDContentSizeKey = "contentSize"
 var memberHeadLoaderKey: UInt8 = 0//"memberHeadLoaderKey"
+var memberFootLoaderKey: UInt8 = 0//"memberFootLoaderKey"
 
 
 /// 触发刷新的拖动偏移量
