@@ -10,55 +10,16 @@ import UIKit
 
 public class EDFootLoader: EDLoader {
     // MARK: Member
+    /// 上一次使用footLoader加载数据之后的contenSize高度
+    var lastLoadedcontentSizeH: CGFloat?
     /// 底部控件将要出现的偏移量
-    var footViewWillShowOffsetY: CGFloat = 0
-    /// bottom button for superView
-    private lazy var footBtn: UIButton = {
-        let btn = UIButton(type: UIButtonType.Custom)
-        btn.backgroundColor = UIColor.brownColor()
-        
-
-        
-        btn.titleLabel?.font = UIFont.systemFontOfSize(12)
-        btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-        btn.setTitle("点击或者上拉加载更多", forState: UIControlState.Normal)
-        
-        
-        
-        self.addSubview(btn)
-        
-        return btn
-    }()
-
-    /// waiting view for footer
-    private lazy var waitingView: UIActivityIndicatorView = {
-        let wv = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        wv.hidden = true
-        self.addSubview(wv)
-        return wv
-    }()
+    var footLoaderWillShowOffsetY: CGFloat = 0
+   
     
     /// a flag that wether operate in funtion observeValueForKeyPath
     private var ignoreThisSizeChange: Bool = false
     
-    /// loader的状态
-    override  var state: EDLoaderState? {
-        didSet { // 根据状态来做事
-            
-            if oldValue == state  {
-                return
-            }
-            if state == .willLoad {
-                print("willLoad")
-            } else if state == .free {
-                print("free")
-            }  else if state == .loading {
-                print("loading")
-            } else if state == .reset {
-                print("reset")
-            }
-        }
-    }
+   
     
     // MARK: Initialiaztion
     override init(frame: CGRect) {
@@ -71,11 +32,15 @@ public class EDFootLoader: EDLoader {
     
    // MARK: - Private Function
     
+    func footBtnClicked() -> Void {
+        state = .loading
+    }
+    
     override func loaderWillAddToSrollView() {
         super.loaderWillAddToSrollView()
         // 需要开启新线程才能获取正确的contenInset，原因不明
         dispatch_async(dispatch_get_main_queue()) {
-            self.initialSuperViewContentOffsetY = (self.superScrollView?.ed_contentOffsetY())!
+            self.initialSuperViewContentOffsetY = (self.superScrollView?.ed_contentOffsetY)!
             self.superViewOriginalInset = self.superScrollView?.contentInset
             self.state = .free
             self.ed_top = (self.superScrollView?.contentSize.height)!
@@ -91,11 +56,13 @@ public class EDFootLoader: EDLoader {
             return
         }
         
-        let contenOffsetY = (superview as! UIScrollView).ed_contentOffsetY()
+  
+        
+        let contenOffsetY = (superview as! UIScrollView).ed_contentOffsetY
         
         
-        // 如果已经向上滚动的话，直接返回
-        if contenOffsetY < footViewWillShowOffsetY {
+        // 如果footLoader没有出现，直接返回
+        if contenOffsetY < footLoaderWillShowOffsetY {
             return
         }
         
@@ -104,7 +71,7 @@ public class EDFootLoader: EDLoader {
         // 判断当前loader的状态
         if superScrollView?.dragging == true
         {
-            if contenOffsetY > footViewWillShowOffsetY+ed_loadingOffset
+            if contenOffsetY > footLoaderWillShowOffsetY+ed_loadingOffset
             {
                 state = .willLoad
             }
@@ -120,36 +87,52 @@ public class EDFootLoader: EDLoader {
     }
     
     override func contentSizeDidChange() {
-        footViewWillShowOffsetY = (superScrollView?.ed_ContenSizeH)! - ed_screenH + initialSuperViewContentOffsetY!
+        super.contentSizeDidChange()
+        if initialSuperViewContentOffsetY == nil {
+            return
+        }
+        // 初始化上一次加载后的contentsize高度
+        if lastLoadedcontentSizeH == nil {
+            lastLoadedcontentSizeH = superScrollView?.ed_contentSizeH
+        }
+        
+        // 初始化footLoader即将出现时候的偏移量
+        footLoaderWillShowOffsetY = (superScrollView?.ed_contentSizeH)! - ed_screenH + initialSuperViewContentOffsetY!
         if ignoreThisSizeChange == true {
             ignoreThisSizeChange = false
             return
         }
-        
+       
+        // 初始化footLoader的顶部位置
         self.ed_top = (superScrollView?.contentSize.height)!
         
         ignoreThisSizeChange = true
-        superScrollView?.ed_ContenSizeH = self.ed_top + loaderHeight
+        superScrollView?.ed_contentSizeH = self.ed_top + loaderHeight
  
     }
     
     
     public override func setupSurface() {
         super.setupSurface()
-        footBtn.ed_width = self.ed_width
-        footBtn.ed_height = self.ed_height
-        footBtn.addTarget(target, action: action!, forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     // MARK: Function
     public override func beginLoading() {
+        state = .loading
     }
     
     public override func endLoading() {
+        state = .free
     }
     
-//    public override func loading() -> Bool {
-//    }
+    /**
+     没有更多数据如何处理，用于子类调用
+     */
+    public func noMoreData() {}
+ 
+    public override func loading() -> Bool {
+        return state == .loading || state == .willLoad
+    }
     
     
     

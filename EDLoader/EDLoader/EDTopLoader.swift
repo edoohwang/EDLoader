@@ -53,7 +53,7 @@ public class EDTopLoader: EDLoader {
         
         // 需要开启新线程才能获取正确的contenInset，原因不明
         dispatch_async(dispatch_get_main_queue()) {
-            self.initialSuperViewContentOffsetY = (self.superScrollView?.ed_contentOffsetY())!
+            self.initialSuperViewContentOffsetY = -(self.superScrollView?.ed_insetTop)!
             self.superViewOriginalInset = self.superScrollView?.contentInset
             self.state = .free
             // 得到初始化inset的时候，如果需要的话，立刻开始刷新
@@ -72,7 +72,7 @@ public class EDTopLoader: EDLoader {
             return
         }
         
-        let contenOffsetY = (superview as! UIScrollView).ed_contentOffsetY()
+        let contenOffsetY = (superview as! UIScrollView).ed_contentOffsetY
         
         // 如果已经向上滚动的话，直接返回
         if contenOffsetY > initialSuperViewContentOffsetY {
@@ -128,7 +128,7 @@ public class EDTopLoader: EDLoader {
     
     public override func endLoading() {
         super.endLoading()
-        state = .reset
+        state = .free
     }
     
     public override func loading() -> Bool {

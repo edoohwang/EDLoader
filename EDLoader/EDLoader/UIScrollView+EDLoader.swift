@@ -33,10 +33,18 @@ extension UIScrollView {
     
     
     
-    func ed_contentOffsetY() -> CGFloat {
-        return contentOffset.y
-    }
+
     
+    var ed_contentOffsetY: CGFloat {
+        get {
+            return contentOffset.y
+        }
+        set {
+            var offset = contentOffset
+            offset.y = newValue
+            contentOffset = offset
+        }
+    }
     
     var ed_insetTop: CGFloat {
         get {
@@ -49,7 +57,7 @@ extension UIScrollView {
         }
     }
     
-    var ed_ContenSizeH: CGFloat {
+    var ed_contentSizeH: CGFloat {
         get {
             return contentSize.height
         }

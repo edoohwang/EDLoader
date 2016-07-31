@@ -11,8 +11,6 @@ public class EDLoader: UIView {
         case willLoad
         /// 闲置
         case free
-        /// 恢复初始状态
-        case reset
     }
     
     // MARK: - Member
@@ -108,9 +106,9 @@ public class EDLoader: UIView {
         setupObserver()
         
         // must get real number in a new thread, I don't know what reason,under code is wrong
-        initialSuperViewContentOffsetY = (superScrollView?.ed_contentOffsetY())!
-        superViewOriginalInset = superScrollView?.contentInset
-        state = .free
+//        initialSuperViewContentOffsetY = (superScrollView?.ed_insetTop)!
+//        superViewOriginalInset = superScrollView?.contentInset
+//        state = .free
     }
     
     
@@ -124,11 +122,19 @@ public class EDLoader: UIView {
     
     public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
+        // 不允许交互直接返回
+        if self.userInteractionEnabled == false {
+            return
+        }
+        // contentSize的变化无时不刻都要监听，因为这个key的改变用于重新调整位置
+        if keyPath == EDContentSizeKey {
+            contentSizeDidChange()
+        }
+        
         if !self.hidden {
+        // contentOffset的变化通常用于触发动画的改变，所有隐藏了将不再监听
             if keyPath == EDContentOffsetKey {
                 contentOffsetDidChange()
-            } else if keyPath == EDContentSizeKey {
-                contentSizeDidChange()
             }
         }
     }

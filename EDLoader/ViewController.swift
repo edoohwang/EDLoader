@@ -16,10 +16,9 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
 
         
-        
-        tableView.ed_topLoader = Loader(target: self, action: #selector(loadMoreData))
+        tableView.ed_topLoader = Loader(target: self, action: #selector(loadNewData))
         tableView.ed_topLoader.beginLoading()
-        tableView.ed_footLoader = EDFootLoader(target: self, action: #selector(loadMoreData))
+        tableView.ed_footLoader = EDFootAotoLoader(target: self, action: #selector(loadMoreData))
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,15 +26,27 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @objc private func loadMoreData() {
+    @objc private func loadNewData() {
         for _ in 0...10 {
             datas.insert(random(), atIndex: 0)
         }
-        tableView.reloadData()
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.tableView.reloadData()
             self.tableView.ed_topLoader.endLoading()
+        }
+    }
+    
+    @objc private func loadMoreData() {
+        for _ in 0...10 {
+            datas.append(random())
+        }
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+            self.tableView.ed_footLoader.endLoading()
         }
     }
     

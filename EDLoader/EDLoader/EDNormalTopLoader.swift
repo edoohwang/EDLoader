@@ -37,6 +37,11 @@ public class EDNormalTopLoader: EDTopLoader {
                     self.arrowView.transform = CGAffineTransformRotate(self.arrowView.transform, CGFloat(M_PI)-0.000000000001)
                 })
             } else if state == .free {
+                arrowView.hidden = false
+                waitingView.hidden = true
+                waitingView.stopAnimating()
+                setSuperScrollViewOffsetY(-initialSuperViewContentOffsetY!)
+
                 UIView.animateWithDuration(ed_animationDurution, animations: {
                     self.arrowView.transform = CGAffineTransformIdentity
                 })
@@ -61,17 +66,7 @@ public class EDNormalTopLoader: EDTopLoader {
                 target!.performSelector(action!)
                 
                 return
-            } else if state == .reset {
-                
-                arrowView.hidden = false
-                waitingView.hidden = true
-                waitingView.stopAnimating()
-                setSuperScrollViewOffsetY(-initialSuperViewContentOffsetY!)
-                UIView.animateWithDuration(ed_animationDurution, animations: {
-                    self.viewDidShowPercentage = 0
-                    self.state = .free
-                })
-            }
+            } 
         }
     }
     

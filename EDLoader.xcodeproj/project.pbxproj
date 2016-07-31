@@ -26,6 +26,7 @@
 		69CF38381D4A648A00620C7C /* NSBundle+EDLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF38321D4A648A00620C7C /* NSBundle+EDLoader.swift */; };
 		69CF38391D4A648A00620C7C /* UIScrollView+EDLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF38331D4A648A00620C7C /* UIScrollView+EDLoader.swift */; };
 		69CF383A1D4A648A00620C7C /* UIView+EDLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CF38341D4A648A00620C7C /* UIView+EDLoader.swift */; };
+		69F006861D4DA8B9005C2E82 /* EDNormalFootLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F006851D4DA8B9005C2E82 /* EDNormalFootLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		69CF38321D4A648A00620C7C /* NSBundle+EDLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+EDLoader.swift"; sourceTree = "<group>"; };
 		69CF38331D4A648A00620C7C /* UIScrollView+EDLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+EDLoader.swift"; sourceTree = "<group>"; };
 		69CF38341D4A648A00620C7C /* UIView+EDLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EDLoader.swift"; sourceTree = "<group>"; };
+		69F006851D4DA8B9005C2E82 /* EDNormalFootLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDNormalFootLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +165,9 @@
 				69CF38321D4A648A00620C7C /* NSBundle+EDLoader.swift */,
 				69CF38331D4A648A00620C7C /* UIScrollView+EDLoader.swift */,
 				69CF38341D4A648A00620C7C /* UIView+EDLoader.swift */,
-				691654BD1D4C92E600DB9F82 /* EDFootAotoLoader.swift */,
 				691654BF1D4C93E700DB9F82 /* EDFootLoader.swift */,
+				69F006851D4DA8B9005C2E82 /* EDNormalFootLoader.swift */,
+				691654BD1D4C92E600DB9F82 /* EDFootAotoLoader.swift */,
 			);
 			path = EDLoader;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				691654C01D4C93E700DB9F82 /* EDFootLoader.swift in Sources */,
 				69C0EA0A1D4A1E3200E61C59 /* ViewController.swift in Sources */,
 				69C0E9D11D4A1C3600E61C59 /* AppDelegate.swift in Sources */,
+				69F006861D4DA8B9005C2E82 /* EDNormalFootLoader.swift in Sources */,
 				69CF38361D4A648A00620C7C /* EDLoader.swift in Sources */,
 				692A76F51D4B58FE009A61D2 /* EDCustomTopLoader.swift in Sources */,
 				69CF383A1D4A648A00620C7C /* UIView+EDLoader.swift in Sources */,
@@ -460,10 +464,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EDLoader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edoo.EDLoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -471,10 +479,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EDLoader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edoo.EDLoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

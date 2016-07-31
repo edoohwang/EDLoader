@@ -33,6 +33,14 @@ public class EDCustomTopLoader: EDTopLoader {
             if state == .willLoad {
                 arrowView?.image = imgForWillLoading
             } else if state == .free {
+                
+                arrowView!.hidden = false
+                waitingView!.hidden = true
+                stopAnimation()
+                setSuperScrollViewOffsetY(-initialSuperViewContentOffsetY!)
+                UIView.animateWithDuration(ed_animationDurution, animations: {
+                    self.viewDidShowPercentage = 0
+                })
                 arrowView?.image = imgForFree
             }  else if state == .loading {
                 
@@ -55,16 +63,6 @@ public class EDCustomTopLoader: EDTopLoader {
                 target!.performSelector(action!)
                 
                 return
-            } else if state == .reset {
-                
-                arrowView!.hidden = false
-                waitingView!.hidden = true
-                stopAnimation()
-                setSuperScrollViewOffsetY(-initialSuperViewContentOffsetY!)
-                UIView.animateWithDuration(ed_animationDurution, animations: {
-                    self.viewDidShowPercentage = 0
-                    self.state = .free
-                })
             }
         }
     }
