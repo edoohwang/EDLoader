@@ -66,6 +66,9 @@ public class EDNormalFootLoader: EDFootLoader {
         }
     }
     
+    
+
+    
    // MARK: - Private Function
     public override func setupSurface() {
         super.setupSurface()

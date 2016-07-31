@@ -10,6 +10,8 @@ import UIKit
 
 public class EDFootLoader: EDLoader {
     // MARK: Member
+    /// tabBar挡住scrollView的高度，给用户设置自定义，默认为0
+    public var offsetHeightForTabBar: CGFloat = 0
     /// 上一次使用footLoader加载数据之后的contenSize高度
     var lastLoadedcontentSizeH: CGFloat?
     /// 底部控件将要出现的偏移量
@@ -22,7 +24,7 @@ public class EDFootLoader: EDLoader {
    
     
     // MARK: Initialiaztion
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame:  CGRect(x: 0, y: 0, width: ed_screenW, height: loaderHeight))
     }
     
@@ -97,7 +99,7 @@ public class EDFootLoader: EDLoader {
         }
         
         // 初始化footLoader即将出现时候的偏移量
-        footLoaderWillShowOffsetY = (superScrollView?.ed_contentSizeH)! - ed_screenH + initialSuperViewContentOffsetY!
+        footLoaderWillShowOffsetY = (superScrollView?.ed_contentSizeH)! - ed_screenH + initialSuperViewContentOffsetY! + offsetHeightForTabBar
         if ignoreThisSizeChange == true {
             ignoreThisSizeChange = false
             return

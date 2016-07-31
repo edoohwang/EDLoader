@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class EDFootAotoLoader: EDNormalFootLoader {
+public class EDAutoFootLoader: EDNormalFootLoader {
     
     /// automatic to begin loading when the percentage of footLoader did show, default is 1
     public var percentFootLoaderDidShowToLoading: CGFloat = 0.8
