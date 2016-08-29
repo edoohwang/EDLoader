@@ -8,11 +8,9 @@ tableView.ed_topLoader = EDNormalTopLoader(target: self, action: #selector(myLoa
 tableView.ed_footLoader = EDNormalFootLoader(target: self, action: #selector(myLoadMorDataMethod))
 ```
 
-![image](http://oavel8wuf.bkt.clouddn.com/normalTop.gif)
-
-![image](http://oavel8wuf.bkt.clouddn.com/customloaer.gif)
-
-![image](http://oavel8wuf.bkt.clouddn.com/footloader.gif)
+![](http://oavel8wuf.bkt.clouddn.com/normalTop.gif)
+![](http://oavel8wuf.bkt.clouddn.com/customloaer.gif)
+![](http://oavel8wuf.bkt.clouddn.com/footloader.gif)
 
 ##Installation
 ---
