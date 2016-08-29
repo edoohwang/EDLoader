@@ -1,10 +1,4 @@
-//
-//  UIView+Extention.swift
-//  EDWBLoaction
-//
-//  Created by edoohwang on 7/12/16.
-//  Copyright © 2016 edoohwang. All rights reserved.
-//
+
 
 import Foundation
 import UIKit

@@ -1,10 +1,4 @@
-//
-//  EDNormalFootLoader.swift
-//  EDLoader
-//
-//  Created by edoohwang on 7/31/16.
-//  Copyright © 2016 edoohwang. All rights reserved.
-//
+
 
 import UIKit
 

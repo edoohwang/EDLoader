@@ -1,10 +1,4 @@
-//
-//  UIScrollView+EDExtension.swift
-//  EDWBLoaction
-//
-//  Created by edoohwang on 7/27/16.
-//  Copyright © 2016 edoohwang. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
