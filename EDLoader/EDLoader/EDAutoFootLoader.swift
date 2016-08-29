@@ -10,7 +10,7 @@ import UIKit
 
 public class EDAutoFootLoader: EDNormalFootLoader {
     
-    /// automatic to begin loading when the percentage of footLoader did show, default is 1
+    /// automatic to begin loading when the percentage of footLoader did show, default is 0.8
     public var percentFootLoaderDidShowToLoading: CGFloat = 0.8
 
     override func contentOffsetDidChange() {
