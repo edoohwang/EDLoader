@@ -8,9 +8,9 @@ tableView.ed_topLoader = EDNormalTopLoader(target: self, action: #selector(myLoa
 tableView.ed_footLoader = EDNormalFootLoader(target: self, action: #selector(myLoadMorDataMethod))
 ```
 
-![](http://note.youdao.com/yws/public/resource/94b2683f6df79feaa5a01f42b81491ec/WEBRESOURCEe0d548c7844f4758dfbae90afa98b725)
-![](http://note.youdao.com/yws/public/resource/94b2683f6df79feaa5a01f42b81491ec/WEBRESOURCE2e34d0ddda0131e0c5f79f19a0bc4b97)
-![](http://note.youdao.com/yws/public/resource/94b2683f6df79feaa5a01f42b81491ec/WEBRESOURCEd3edca91b80a2430a76e8ba3a7edd21d)
+![](https://raw.githubusercontent.com/edoohwang/EDLoader/master/Gif/normalTop.gif)
+![](https://raw.githubusercontent.com/edoohwang/EDLoader/master/Gif/customloaer.gif)
+![](https://raw.githubusercontent.com/edoohwang/EDLoader/master/Gif/footloader.gif)
 
 ##Installation
 ---
