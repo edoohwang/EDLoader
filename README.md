@@ -55,7 +55,7 @@ if your app can't not load more data, you can't stop footLoaer invoke the method
 tableView.ed_footLoader.noMoreData()
 ```
 
-###Customization
+### Customization
 ---
 
 The EDTopLoader and subclass view can be customized using your class inherit and override the setupSurface method:
