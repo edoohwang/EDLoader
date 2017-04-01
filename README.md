@@ -1,4 +1,4 @@
-#EDLoader
+# EDLoader
 ---
 
 These UIScrollView categories makes it super easy to add pull-to-refresh or pull-to-load and infinite scrolling fonctionalities to any UIScrollView (or any of its subclass). Instead of relying on delegates and/or subclassing UIViewController, EDLoader uses the Swift to build,faster and easier:
@@ -12,7 +12,7 @@ tableView.ed_footLoader = EDNormalFootLoader(target: self, action: #selector(myL
 ![](https://raw.githubusercontent.com/edoohwang/EDLoader/master/Gif/customloaer.gif)
 ![](https://raw.githubusercontent.com/edoohwang/EDLoader/master/Gif/footloader.gif)
 
-##Installation
+## Installation
 ---
 ### CocoaPods
 
@@ -21,10 +21,10 @@ Add pod 'EDLoader' to your Podfile or pod 'EDLoader', :head if you're feeling ad
 ### Manually
 Drag the EDLoader/EDLoader folder into your project.
 
-##Usage
+## Usage
 ---
 
-###Adding Pull to Refresh
+### Adding Pull to Refresh
 (see sample Xcode project in DownloadZip)
 
 ```Swift
@@ -73,7 +73,7 @@ class MyTopLoader: EDCustomTopLoader {
 }
 ```
 
-###Adding Infinite Scrolling
+### Adding Infinite Scrolling
 ---
 
 ```Swift
